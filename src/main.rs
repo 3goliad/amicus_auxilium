@@ -4,12 +4,18 @@ use tower_service::Service;
 use warp::{self, path, filters, Filter};
 use anyhow::Result;
 use tracing_futures::Instrument;
+use std::env;
+use dotenv::{dotenv, var};
 
 // compile time include
 // const LANDING_PAGE: &'static str = include_str!("../client/dist/index.html");
 
+refinery::embed_migrations!("migrations");
+
 #[tokio::main]
 async fn main() -> Result<()> {
+    dotenv()?;
+
     let subscriber = tracing_subscriber::FmtSubscriber::builder()
         .with_env_filter("workerlist=debug,warp=debug,info")
         .finish();
@@ -19,6 +25,19 @@ async fn main() -> Result<()> {
 
     tracing_log::LogTracer::init()
         .expect("setting log tracer failed");
+
+    {
+        use tokio_postgres::NoTls;
+        let (mut client, conn) = tokio_postgres::connect(&var("DATABASE_URL")?, NoTls).await?;
+        tokio::spawn(async move {
+            if let Err(e) = conn.await {
+                eprintln!("connection error: {}", e);
+            }
+        });
+        migrations::runner().run_async(&mut client).await?;
+    }
+
+    let pool = sqlx::PgPool::new("postgres://localhost/database").await?;
 
     let hello = path!("hello" / String)
         .map(|name| format!("Howdy {}", name));
@@ -57,7 +76,10 @@ async fn main() -> Result<()> {
     });
 
 
-    hyper::Server::bind(&([127, 0, 0, 1], 6070).into())
+    let port: u16 = var("PORT")
+        .unwrap_or("80".to_string())
+        .parse()?;
+    hyper::Server::bind(&([127, 0, 0, 1], port).into())
         .serve(make_svc)
         .await?;
     Ok(())

@@ -2,4 +2,4 @@
 
 with pkgs;
 
-mkShell { buildInputs = [ nodejs ]; }
+mkShell { buildInputs = [ nodejs-12_x postgresql openssl pkgconfig ]; }

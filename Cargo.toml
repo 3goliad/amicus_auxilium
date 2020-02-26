@@ -15,6 +15,14 @@ tracing-subscriber = "0.1"
 hyper = "*"
 tower-service = "*"
 tracing-log = "0.1"
+tokio-postgres = "0.5"
+dotenv = "0.15.0"
+[dependencies.refinery]
+version = "0.2.1"
+features = ["tokio-postgres"]
+# [dependencies.refinery-migrations]
+# version = "0.2.2"
+# features = ["async"]
 [dependencies.sqlx]
 version = "0.2"
 default-features = false
@@ -24,4 +32,3 @@ version = "0.2"
 features = ["full"]
 [dependencies.openssl]
 version = "*"
-features = ["vendored"]
