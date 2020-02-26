@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     id="wllogo"
+     height="512"
+     width="512"
+     viewBox="0 0 512 512">
+  <g id="bars">
+    <rect y="60"  x="32" height="44" width="448" />
+    <rect y="124" x="32" height="44" width="448" />
+    <rect y="188" x="32" height="44" width="448" />
+    <rect y="252" x="32" height="44" width="448" />
+    <rect y="316" x="32" height="44" width="448" />
+    <rect y="380" x="32" height="44" width="448" />
+    <rect y="444" x="32" height="44" width="448" />
+  </g>
+  <g id="walker"
+     stroke="white"
+     stroke-width="8"
+     stroke-linejoin="round"
+     stroke-opacity="1"
+     fill="white"
+     >
+    <ellipse
+        id="head"
+        cx="316"
+        cy="92"
+        rx="32"
+        ry="32"
+        />
+    <polygon
+        id="body"
+        points="310,145
+                288,127
+                183,159
+                168,258
+                191,258
+                210,179
+                226,184
+                205,241
+                203,268
+                135,427
+                161,456
+                236,329
+                249,347
+                266,464
+                299,463
+                290,330
+                272,269
+                288,232
+                302,255
+                354,288
+                368,266
+                322,217"
+        />
+  </g>
+</svg>

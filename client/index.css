@@ -1,0 +1,48 @@
+@font-face {
+    font-family: "Work Sans";
+    font-weight: 400;
+    src: url("/fonts/WorkSans-Regular.otf");
+}
+
+@font-face {
+    font-family: "Work Sans";
+    font-weight: 700;
+    src: url("/fonts/WorkSans-Bold.otf");
+}
+
+@font-face {
+    font-family: "Bitter";
+    font-weight: 400;
+    src: url("/fonts/Bitter-Regular.otf");
+}
+
+body {
+    margin: 0;
+    font-size: 16px;
+}
+
+header {
+    display: grid;
+    grid-template-columns: min-content 1fr min-content;
+    width: 100%;
+    font-family: "Work Sans", sans-serif;
+    font-size: 2rem;
+    background-color: skyblue;
+    padding: 0.1rem;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    font-family: "Work Sans", sans-serif;
+}
+
+.sidebar {
+    float: left;
+    height: 100%;
+}
+
+.logo {
+    align-self: center;
+    height: 2.5rem;
+}
